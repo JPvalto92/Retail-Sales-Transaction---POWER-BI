@@ -1,0 +1,20 @@
+# Global default owner
+* @JPvalto92
+
+# Data Layer
+/data/ @JPvalto92
+
+# Power BI Reports
+/reports/ @JPvalto92
+*.pbix @JPvalto92
+
+# DAX Measures
+/dax/ @JPvalto92
+
+# SQL Scripts
+/sql/ @JPvalto92
+
+# Documentation
+/docs/ @JPvalto92
+*.md @JPvalto92
+*.xlsx @JPvalto92
