@@ -1,0 +1,20 @@
+# CODEOWNERS
+
+# Default owner for the entire repository
+* @JPvalto92
+
+# SQL scripts
+*.sql @JPvalto92
+
+# Power BI dashboards
+*.pbix @JPvalto92
+
+# R scripts
+*.R @JPvalto92
+
+# Excel files
+*.xlsx @JPvalto92
+
+# Documentation
+*.md @JPvalto92
+/docs/ @JPvalto92
