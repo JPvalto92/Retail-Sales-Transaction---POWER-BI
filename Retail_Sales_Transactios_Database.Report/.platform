@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Retail_Sales_Transactios_Database"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c6da87fe-0431-4cda-91a0-8449fc468528"
+  }
+}

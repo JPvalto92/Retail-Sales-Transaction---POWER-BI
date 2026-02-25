@@ -1,0 +1,137 @@
+table retail_sales_dataset
+	lineageTag: a74cd106-5a29-49b2-81e5-5570435d29c8
+
+	measure 'Total Sales' = SUM(retail_sales_dataset[total_sales])
+		formatString: 0
+		lineageTag: 7e827e21-c5da-4c75-a211-3ccf7aff437d
+
+	measure 'Total Quantity' = SUM(retail_sales_dataset[quantity])
+		formatString: 0
+		lineageTag: 5423e0de-0521-44b3-a55a-967b0bc037bc
+
+	measure 'Total Discount' =
+			
+			SUMX(
+			    retail_sales_dataset,
+			    retail_sales_dataset[total_sales] * retail_sales_dataset[discount_percent] / 100
+			)
+		lineageTag: 31c392cb-916d-41ec-bda0-02226ccde80d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Price' = AVERAGE(retail_sales_dataset[price_per_unit])
+		lineageTag: 8930ed63-36f5-41c7-a248-c0c11c1f82cd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Ticket' =
+			
+			DIVIDE(
+			    [Total Sales],
+			    DISTINCTCOUNT(retail_sales_dataset[ID])
+			)
+		lineageTag: 41f7d73b-a9a2-4817-bd6f-daac9f71667f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Discount' = AVERAGE(retail_sales_dataset[discount_percent])
+		lineageTag: 7c7a20e8-30e5-4b25-a88b-e8902fea4d7e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Sales' = AVERAGE(retail_sales_dataset[total_sales])
+		lineageTag: 610ab6ed-be0d-4740-82fe-01877aace1ef
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ad047eb-e945-45f0-882f-20a9e78e5bd8
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 8bda546e-e2a6-41e8-bddf-da4422cb6e78
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column price_per_unit
+		dataType: int64
+		formatString: 0
+		lineageTag: 98996de8-d10b-40f9-bcc1-043217f9bf1e
+		summarizeBy: sum
+		sourceColumn: price_per_unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_sales
+		dataType: int64
+		formatString: 0
+		lineageTag: a7ca9425-2028-4318-b0d4-434cb138a2b3
+		summarizeBy: sum
+		sourceColumn: total_sales
+
+		annotation SummarizationSetBy = Automatic
+
+	column discount_percent
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b712eb9-0a21-41d7-88e7-50758011db4a
+		summarizeBy: sum
+		sourceColumn: discount_percent
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_category
+		dataType: string
+		lineageTag: 24c6fb43-4002-40ce-b5a8-488a9dd1dbe3
+		summarizeBy: none
+		sourceColumn: product_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_location
+		dataType: string
+		lineageTag: 0b40a21b-5e73-46ef-8e7f-24d1c08fb4dd
+		summarizeBy: none
+		sourceColumn: store_location
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_method
+		dataType: string
+		lineageTag: cf6d1657-6f00-4795-a81e-ede46187efee
+		summarizeBy: none
+		sourceColumn: payment_method
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_type
+		dataType: string
+		lineageTag: b30ff230-cbfe-4a77-8e97-5bdf46b4b9cc
+		summarizeBy: none
+		sourceColumn: customer_type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition retail_sales_dataset = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(File.Contents("C:\Users\jpval\Desktop\GITHUB\retail_sales_dataset.csv"),[Delimiter=",", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"id", Int64.Type}, {"quantity", Int64.Type}, {"price_per_unit", Int64.Type}, {"total_sales", Int64.Type}, {"discount_percent", Int64.Type}, {"product_category", type text}, {"store_location", type text}, {"payment_method", type text}, {"customer_type", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

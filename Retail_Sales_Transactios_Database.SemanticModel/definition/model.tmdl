@@ -1,0 +1,18 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["retail_sales_dataset"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table retail_sales_dataset
+
+ref cultureInfo es-ES
+

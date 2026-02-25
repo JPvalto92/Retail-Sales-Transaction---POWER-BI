@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Retail_Sales_Transactios_Database"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "aee47890-3137-4193-abd6-fd758df5133d"
+  }
+}
