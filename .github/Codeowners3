@@ -1,0 +1,15 @@
+# Default owner for entire repository
+* @JPvalto92
+
+# Power BI files
+*.pbix @JPvalto92
+
+# DAX or model documentation
+*.md @JPvalto92
+
+# SQL scripts
+*.sql @JPvalto92
+
+# Data files
+*.csv @JPvalto92
+*.xlsx @JPvalto92
